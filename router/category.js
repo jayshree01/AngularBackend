@@ -12,10 +12,10 @@ var upload=multer({storage: storage});
 
 router.post("/add",upload.single("image"),categoryController.add);
 
-router.get("/view",categoryController.view);
+// router.get("/view",categoryController.view);
 
-router.post("/edit",upload.single("image"),categoryController.edit);
+// router.post("/edit",upload.single("image"),categoryController.edit);
 
-// router.delete("/delete",categoryController.delete);
+// // router.delete("/delete",categoryController.delete);
 
 module.exports = router;
