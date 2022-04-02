@@ -8,7 +8,9 @@ var indexRouter = require('./router/index');
 var categoryRouter = require('./router/category');
 const cors = require('cors');
 var app = express();
+
 app.use(cors());
+
 mongoose.connect(DB,{
     useUnifiedTopology: true,
     useNewUrlParser:true
@@ -17,6 +19,7 @@ mongoose.connect(DB,{
 }).catch(err=>{
     console.log("connection failed");
 });
+
 app.use(express.json());
 app.use(express.urlencoded({
     extended: false

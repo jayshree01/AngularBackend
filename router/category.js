@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const categoryController = require("../controller/category");
 const multer = require('multer');
+const tokenVerification = require('../middleware/tokenverification');
 var storage = multer.diskStorage({
     destination:'public/images',
     filename:function(request,file,cb){
@@ -10,7 +11,7 @@ var storage = multer.diskStorage({
 });
 var upload=multer({storage: storage});
 
-router.post("/add",upload.single("image"),categoryController.add);
+router.post("/add",upload.single("image"),tokenVerification.verifyToken,categoryController.add);
 
 // router.get("/view",categoryController.view);
 
