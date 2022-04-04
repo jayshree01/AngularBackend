@@ -4,14 +4,16 @@ const categoryController = require("../controller/category");
 const multer = require('multer');
 const tokenVerification = require('../middleware/tokenverification');
 var storage = multer.diskStorage({
-    destination:'public/images',
-    filename:function(request,file,cb){
-        cb(null , Date.now()+"-"+file.originalname);
+    destination: 'public/images',
+    filename: function (request, file, cb) {
+        cb(null, Date.now() + "-" + file.originalname);
     }
 });
-var upload=multer({storage: storage});
+var upload = multer({
+    storage: storage
+});
 
-router.post("/add",upload.single("image"),categoryController.add);
+router.post("/add", upload.single("image"), tokenVerification.verifyToken, categoryController.add);
 
 // router.get("/view",categoryController.view);
 
